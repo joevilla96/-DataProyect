@@ -1,36 +1,74 @@
-import streamlit as st
 import pandas as pd
-import numpy as np
+import pandas_profiling
+import streamlit as st
+from streamlit_pandas_profiling import st_profile_report
+from pandas_profiling import ProfileReport
 
-st.title('Reporte de ejemplo')
 
-DATE_COLUMN = 'date/time'
-DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
-            'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
+df = pd.read_csv("data/Data_limpia.csv", na_values=['='])
 
-@st.cache
-def load_data(nrows):
-    data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
-    data.rename(lowercase, axis='columns', inplace=True)
-    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
-    return data
 
-data_load_state = st.text('Loading data...')
-data = load_data(10000)
-data_load_state.text("Done! (using st.cache)")
 
-if st.checkbox('Show raw data'):
-    st.subheader('Raw data')
-    st.write(data)
 
-st.subheader('Number of pickups by hour')
-hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
-st.bar_chart(hist_values)
+profile = ProfileReport(df,
 
-# Some number in the range 0-23
-hour_to_filter = st.slider('hour', 0, 23, 17)
-filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
+                        title="Salario Data",
 
-st.subheader('Map of all pickups at %s:00' % hour_to_filter)
-st.map(filtered_data)
+        dataset={
+
+        "description": "This profiling report was generated for Analytics",
+
+        "copyright_holder": "Analytics for Josué",
+
+        "copyright_year": "2022",
+
+        #"url": "https://www.analyticsvidhya.com/blog/",
+
+    },
+
+    variables={
+
+        "descriptions": {
+
+            #"timestamp": "Name of the state",
+
+            "company": "Nombres de las compañías",
+
+            #"title": "Títulos",
+
+            "totalyearlycompensation": "Compensación total anual",
+
+            #"location": "locación",
+
+            #"yearsofexperience": "Años de experiencia",
+
+            #"yearsatcompany": "Años en la compañía",
+
+            #"tag": "Etiqueta",
+
+            "basesalary": "Salario base",
+
+            #"stockgrantvalue": "How much production?",
+
+            #"bonus": "How much production?",
+
+            "gender": "How much production?",
+
+            "Race": "How much production?",
+            
+            "Education": "How much production?"
+
+        }
+
+    }
+
+)
+
+
+
+
+st.title("Pandas Profiling in Streamlit!")
+
+st.write(df)
+
+st_profile_report(profile)
