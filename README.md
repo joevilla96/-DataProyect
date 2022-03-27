@@ -28,7 +28,7 @@ Contexto
 Contenido
 Este conjunto de datos contiene información útil, como el nivel educativo, la compensación (salario base, bonos, subvenciones de acciones), la raza y más.
 
-*www.kaggle.com/datasets/jackogozaly/data-science-and-stem-salaries
+* www.kaggle.com/datasets/jackogozaly/data-science-and-stem-salaries
 
 
 Referencias de apoyo
