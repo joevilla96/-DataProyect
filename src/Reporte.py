@@ -18,7 +18,7 @@ profile = ProfileReport(df,
 
         "description": "This profiling report was generated for Analytics",
 
-        "copyright_holder": "Analytics for Josué",
+        "copyright_holder": "Analisis por Joel Landaveri",
 
         "copyright_year": "2022",
 
