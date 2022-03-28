@@ -1,6 +1,5 @@
+streamlit
+numpy
 pandas
 pandas_profiling
-streamlit
 streamlit_pandas_profiling
-from streamlit_pandas_profiling import st_profile_report
-from pandas_profiling import ProfileReport
