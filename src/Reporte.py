@@ -5,7 +5,7 @@ from streamlit_pandas_profiling import st_profile_report
 from pandas_profiling import ProfileReport
 
 
-df = pd.read_csv("data/Data_limpia.csv", na_values=['='])
+df = pd.read_csv("Data/Data_limpia.csv", na_values=['='])
 
 
 
